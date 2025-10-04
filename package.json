@@ -12,6 +12,7 @@
     "should": "^4.1.0"
   },
   "dependencies": {
+    "@davidcal/fec-raptorq": "^1.11.0",
     "readable-stream": "^1.0.33"
   },
   "scripts": {
