@@ -25,12 +25,23 @@ var rsDecoder = new fec.Decoder({
   ecclen: 32 // Must match the encoder
 });
 
+// For RaptorQ
+var raptorEncoder = new fec.Encoder({
+  method: fec.methods.raptor,
+  overhead: 0.2, // Redundancy factor (e.g., 0.2 for 20% overhead)
+  symbol_size: 1400 // Size of each symbol in bytes
+});
+var raptorDecoder = new fec.Decoder({
+  method: fec.methods.raptor
+});
+
 readableStream.pipe(encoder).pipe(decoder).pipe(writableStream);
 ```
 
 The available methods at this time are:
 * Hamming(8,4)
 * Reed-Solomon
+* RaptorQ
 
 ## Developer's Guide
 
@@ -78,7 +89,6 @@ The test suite includes a fun and practical test using the text of the January 1
 Run tests with mocha.
 
 ## Todo
-Raptor coding.
 
 from [http://science.nasa.gov/media/medialibrary/2011/04/13/NASA_Comm_Services_EV-2_TAGGED.pdf](http://science.nasa.gov/media/medialibrary/2011/04/13/NASA_Comm_Services_EV-2_TAGGED.pdf):
 
